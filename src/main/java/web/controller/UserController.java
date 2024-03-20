@@ -27,13 +27,13 @@ public class UserController {
     public String addUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName,
                           @RequestParam("age") int age) {
         userService.addUser(new User(name, lastName, age));
-        return "users";
+        return "redirect:/users";
     }
 
     @GetMapping("/users/delete")
     public String deleteUser(@RequestParam("userId") int userId) {
         userService.deleteUser(userId);
-        return "users";
+        return "redirect:/users";
     }
 
     @PostMapping("/users/update")
@@ -44,6 +44,6 @@ public class UserController {
         user.setLastName(lastName.isEmpty() ? user.getLastName() : lastName);
         user.setAge(age.isEmpty() ? user.getAge() : Integer.parseInt(age));
         userService.updateUser(user);
-        return "users";
+        return "redirect:/users";
     }
 }
